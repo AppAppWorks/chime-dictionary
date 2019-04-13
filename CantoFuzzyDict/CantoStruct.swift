@@ -11,7 +11,7 @@ import Canto
 import SymSpell
 
 struct CantoStruct {
-    let jyutPing: [Syllable]
+    let jyutPing: [CantoSyllable]
     let termData: [(term: String, offsetPairs: [OffsetPair])]
 }
 
@@ -33,16 +33,11 @@ extension CantoStruct : SymSpellKey {
         return try persistent.serializedData()
     }
     
-    public init?(serializedData: Data) {
-        do {
-            let persistent = try CantoStructPst(serializedData: serializedData)
-            jyutPing = persistent.jyutPing.map { Syllable(rawValue: Int($0))! }
-            termData = persistent.termData.map {
-                ($0.term, $0.offsetPairs.offsetPairs)
-            }
-        } catch {
-            debugPrint(error)
-            return nil
+    public init(serializedData: Data) throws {
+        let persistent = try CantoStructPst(serializedData: serializedData)
+        jyutPing = persistent.jyutPing.map { CantoSyllable(rawValue: Int($0))! }
+        termData = persistent.termData.map {
+            ($0.term, $0.offsetPairs.offsetPairs)
         }
     }
     

@@ -8,11 +8,282 @@
 
 import BaseDictionary
 
+//extension PhoneticInfo : BaseDictionary.Syllables {
+//    public static func getNone() -> PhoneticInfo {
+//        return PhoneticInfo(tradSimp: .none, offsetPairs: [])
+//    }
+//
+//    public var count: Int {
+//        if offsetPairs.isEmpty {
+//            return tradSimp.isNone ? 1 : tradSimp.anyPronunciation.count
+//        }
+//        let difference = offsetPairs.reduce(0) { $0 + $1.termOffset.count - $1.syllableOffset.count }
+//        return tradSimp.anyPronunciation.count + difference
+//    }
+//
+//    public var first: PhoneticInfo {
+//        if tradSimp.isNone {
+//            return self
+//        }
+//        if let firstOffsetPair = offsetPairs.first, firstOffsetPair.termOffset.startIndex == 0 {
+//            return PhoneticInfo(tradSimp: tradSimp.prefix(firstOffsetPair.termOffset.count), offsetPairs: [firstOffsetPair])
+//        } else {
+//            return PhoneticInfo(tradSimp: tradSimp.prefix(1), offsetPairs: [])
+//        }
+//    }
+//
+//    public func referenceTerms(masterTerms: [String]) -> [String]? {
+//        switch tradSimp {
+//        case .simplified(let simplified), .tradSimp(_, let simplified):
+//            switch simplified.reference {
+//            case .traditionalDirect(let terms): return terms
+//            case .traditionalIndirect(let termIdxs): return termIdxs.map { masterTerms[$0] }
+//            }
+//        default: return nil
+//        }
+//    }
+//
+//    //    public func serializedData() throws -> Data {
+//    //        let syllablesDataPair = pronunciations.dataPair!
+//    //        let offsetsDataPair = offsetPairs.dataPair
+//    //
+//    //        let dataPairs = [syllablesDataPair, offsetsDataPair]
+//    //        let dataCount = dataPairs.reduce(0) { $0 + ($1?.count ?? MemoryLayout<Int>.stride) }
+//    //
+//    //        var data = Data(count: dataCount)
+//    //
+//    //        dataPairs.forEach {
+//    //            if let dataPair = $0 {
+//    //                data.append(dataPair.data)
+//    //            } else {
+//    //                data.append(withUnsafeBytes(of: 0) { Data($0) })
+//    //            }
+//    //        }
+//    //
+//    //        return data
+//    //    }
+//    //
+//    //    public init?(serializedData: Data) {
+//    //        let syllablesSize: Int = serializedData[..<MemoryLayout<Int>.stride].value()
+//    //
+//    //        var serializedData = serializedData.advanced(by: MemoryLayout<Int>.stride)
+//    //        pronunciations = serializedData[..<syllablesSize].array()
+//    //
+//    //        serializedData = serializedData.advanced(by: syllablesSize)
+//    //
+//    //        let offsetSize: Int = serializedData[..<MemoryLayout<Int>.stride].value()
+//    //
+//    //        if offsetSize == 0 {
+//    //            offsetPairs = []
+//    //        } else {
+//    //            serializedData = serializedData.advanced(by: MemoryLayout<Int>.stride)
+//    //            offsetPairs = serializedData[..<offsetSize].array()
+//    //        }
+//    //    }
+//
+//    public func serializedData() throws -> Data {
+//        let persistent = CantoPhoneticInfoPst.with {
+//            $0.tradPronunciations = tradSimp.traditionalPronunciations.proto
+//
+//            if let simplified = tradSimp.simplified {
+//                $0.simplified.pronunciations = simplified.pronunciations.proto
+//                $0.simplified.reference = simplified.reference.proto
+//            }
+//
+//            $0.offsetPairs =
+//                offsetPairs.map { offsetPair in
+//                    .with {
+//                        $0.termStart = Int32(offsetPair.termOffset.startIndex)
+//                        $0.termEnd = Int32(offsetPair.termOffset.endIndex)
+//                        $0.syllableStart = Int32(offsetPair.syllableOffset.startIndex)
+//                        $0.syllableEnd = Int32(offsetPair.syllableOffset.endIndex)
+//                    }
+//            }
+//            fatalError("unimplemented")
+//        }
+//
+//        return try persistent.serializedData()
+//    }
+//
+//    public init(serializedData: Data) throws {
+//        let persistent = try CantoPhoneticInfoPst(serializedData: serializedData)
+//
+//        let tradPronunciations = persistent.tradPronunciations.pronunciations
+//        let simpPronunciations = persistent.simplified.pronunciations.pronunciations
+//
+//        func createSimplified() -> PhoneticInfo.TradSimp.Simplified {
+//            return .init(pronunciations: simpPronunciations, reference: persistent.simplified.reference!.inMemory)
+//        }
+//
+//        if tradPronunciations.isEmpty && simpPronunciations.isEmpty {
+//            tradSimp = .none
+//        } else if tradPronunciations.isEmpty {
+//            tradSimp = .simplified(content: createSimplified())
+//        } else if simpPronunciations.isEmpty {
+//            tradSimp = .traditional(content: .init(pronunciations: tradPronunciations))
+//        } else {
+//            tradSimp = .tradSimp(traditional: .init(pronunciations: tradPronunciations), simplified: createSimplified())
+//        }
+//
+//        offsetPairs = persistent.offsetPairs.map {
+//            (Int($0.termStart)..<Int($0.termEnd), Int($0.syllableStart)..<Int($0.syllableEnd))
+//        }
+//    }
+//}
+//
+//extension PhoneticInfo {
+//    typealias SyllableGroup = [[Syllable]]
+//
+//    func dissect(term: String) -> (charGroups: [String], syllableGroups: (traditional: [SyllableGroup], simplified: [SyllableGroup])) {
+//        let traditionalPronunciations = tradSimp.traditionalPronunciations
+//        let simplifiedPronunciations = tradSimp.simplifiedPronunciations
+//
+//        if offsetPairs.isEmpty {
+//            return (term.map { String($0) }, (traditionalPronunciations.map { [$0] }, simplifiedPronunciations.map { [$0] }))
+//        }
+//
+//        var charStart = 0
+//        var syllableStart = 0
+//        let chars = Array(term)
+//        var charGroups = [String]()
+//
+//        var traditionalSyllableGroups = [SyllableGroup](repeating: [], count: traditionalPronunciations.count)
+//        var simplifiedSyllableGroups = [SyllableGroup](repeating: [], count: simplifiedPronunciations.count)
+//
+//        for offsetPair in offsetPairs {
+//            let charEnd = offsetPair.termOffset.startIndex
+//            charGroups.append(contentsOf: chars[charStart..<charEnd].map { String($0) })
+//            charStart = offsetPair.termOffset.endIndex
+//
+//            let syllableEnd = offsetPair.syllableOffset.startIndex
+//            for i in traditionalPronunciations.indices {
+//                traditionalSyllableGroups[i].append(contentsOf: traditionalPronunciations[i][syllableStart..<syllableEnd].map { [$0] })
+//            }
+//            for i in simplifiedPronunciations.indices {
+//                simplifiedSyllableGroups[i].append(contentsOf: simplifiedPronunciations[i][syllableStart..<syllableEnd].map { [$0] })
+//            }
+//            syllableStart = offsetPair.syllableOffset.endIndex
+//
+//            charGroups.append(String(chars[offsetPair.termOffset]))
+//            for i in traditionalSyllableGroups.indices {
+//                traditionalSyllableGroups[i].append(Array(traditionalPronunciations[i][offsetPair.syllableOffset]))
+//            }
+//            for i in simplifiedSyllableGroups.indices {
+//                simplifiedSyllableGroups[i].append(Array(simplifiedPronunciations[i][offsetPair.syllableOffset]))
+//            }
+//        }
+//
+//        if charStart < chars.count {
+//            charGroups.append(contentsOf: chars[charStart...].map { String($0) })
+//            for i in traditionalSyllableGroups.indices {
+//                traditionalSyllableGroups[i].append(contentsOf: traditionalPronunciations[i][syllableStart...].map { [$0] })
+//            }
+//            for i in simplifiedSyllableGroups.indices {
+//                simplifiedSyllableGroups[i].append(contentsOf: simplifiedPronunciations[i][syllableStart...].map { [$0] })
+//            }
+//        }
+//
+//        return (charGroups, (traditionalSyllableGroups, simplifiedSyllableGroups))
+//    }
+//}
+//
+//extension Sequence where Element : Sequence {
+//    func flatPrefix(_ maxLength: Int) -> [[Element.Element]] {
+//        return map { Array($0.prefix(maxLength)) }
+//    }
+//}
+//
+//extension PhoneticInfo.TradSimp.Traditional {
+//    func prefix(_ maxLength: Int) -> PhoneticInfo.TradSimp.Traditional {
+//        return .init(pronunciations: pronunciations.flatPrefix(maxLength))
+//    }
+//}
+//
+//extension PhoneticInfo.TradSimp.Simplified {
+//    func prefix(_ maxLength: Int) -> PhoneticInfo.TradSimp.Simplified {
+//        return .init(pronunciations: pronunciations.flatPrefix(maxLength), reference: reference)
+//    }
+//}
+//
+//extension CantoPhoneticInfoPst.Simplified.OneOf_Reference {
+//    var inMemory: PhoneticInfo.TradSimp.Simplified.Reference {
+//        switch self {
+//        case .tradDirects(let terms): return .traditionalDirect(terms: terms.values)
+//        case .tradIndirects(let idxs): return .traditionalIndirect(termIdx: idxs.values.map { Int($0) })
+//        }
+//    }
+//}
+//
+//extension PhoneticInfo.TradSimp.Simplified.Reference {
+//    var proto: CantoPhoneticInfoPst.Simplified.OneOf_Reference {
+//        switch self {
+//        case .traditionalDirect(let terms): return .tradDirects(Strings.with { $0.values = terms })
+//        case .traditionalIndirect(let idxs): return .tradIndirects(UInt32s.with { $0.values = idxs.map { UInt32($0) } })
+//        }
+//    }
+//}
+//
+//extension PhoneticInfo.TradSimp {
+//    var isNone: Bool {
+//        if case .none = self {
+//            return true
+//        }
+//        return false
+//    }
+//
+//    var anyPronunciation: [Syllable] {
+//        switch self {
+//        case .none: return []
+//        case .traditional(let traditional), .tradSimp(let traditional, _): return traditional.pronunciations[0]
+//        case .simplified(let content): return content.pronunciations[0]
+//        }
+//    }
+//
+//    func prefix(_ maxLength: Int) -> PhoneticInfo.TradSimp {
+//        switch self {
+//        case .none: return self
+//        case .traditional(let content): return .traditional(content: content.prefix(maxLength))
+//        case .simplified(let content): return .simplified(content: content.prefix(maxLength))
+//        case .tradSimp(let traditional, let simplified): return .tradSimp(traditional: traditional.prefix(maxLength), simplified: simplified.prefix(maxLength))
+//        }
+//    }
+//
+//    var traditionalPronunciations: [[Syllable]] {
+//        switch self {
+//        case .traditional(let traditional), .tradSimp(let traditional, _): return traditional.pronunciations
+//        default: return []
+//        }
+//    }
+//
+//    var simplifiedPronunciations: [[Syllable]] {
+//        return simplified?.pronunciations ?? []
+//    }
+//
+//    var simplified: Simplified? {
+//        switch self {
+//        case .simplified(let simplified), .tradSimp(_, let simplified): return simplified
+//        default: return nil
+//        }
+//    }
+//}
+
+extension Sequence where Element == [Syllable] {
+    var proto: [UInt32s] {
+        return map { pronunciation in UInt32s.with { $0.values = pronunciation.map { UInt32($0.rawValue) } } }
+    }
+}
+
+extension Sequence where Element == UInt32s {
+    var pronunciations: [[Syllable]] {
+        return map { $0.values.map { Syllable(rawValue: Int($0))! } }
+    }
+}
+
 extension PhoneticInfo : BaseDictionary.Syllables {
     public static func getNone() -> PhoneticInfo {
         return PhoneticInfo(pronunciations: [], offsetPairs: [])
     }
-    
+
     public var count: Int {
         if offsetPairs.isEmpty {
             return pronunciations.isEmpty ? 1 : pronunciations[0].count
@@ -20,7 +291,7 @@ extension PhoneticInfo : BaseDictionary.Syllables {
         let difference = offsetPairs.reduce(0) { $0 + $1.termOffset.count - $1.syllableOffset.count }
         return pronunciations[0].count + difference
     }
-    
+
     public var first: PhoneticInfo {
         if pronunciations.isEmpty {
             return self
@@ -31,7 +302,15 @@ extension PhoneticInfo : BaseDictionary.Syllables {
             return PhoneticInfo(pronunciations: pronunciations.map { [$0[0]] }, offsetPairs: [])
         }
     }
-    
+
+//    public func referenceTerms(masterTerms: [String]) -> [String] {
+//        switch reference {
+//        case .none: return []
+//        case .traditionalDirect(let terms): return terms
+//        case .traditionalIndirect(let termIdxs): return termIdxs.map { masterTerms[$0] }
+//        }
+//    }
+
 //    public func serializedData() throws -> Data {
 //        let syllablesDataPair = pronunciations.dataPair!
 //        let offsetsDataPair = offsetPairs.dataPair
@@ -69,15 +348,10 @@ extension PhoneticInfo : BaseDictionary.Syllables {
 //            offsetPairs = serializedData[..<offsetSize].array()
 //        }
 //    }
-    
+
     public func serializedData() throws -> Data {
         let persistent = CantoPhoneticInfoPst.with {
-            $0.pronunciations =
-                pronunciations.map { pronunciation in
-                    .with {
-                        $0.syllables = pronunciation.map { Int32($0.rawValue) }
-                    }
-                }
+            $0.pronunciations = pronunciations.proto
             $0.offsetPairs =
                 offsetPairs.map { offsetPair in
                     .with {
@@ -88,18 +362,14 @@ extension PhoneticInfo : BaseDictionary.Syllables {
                     }
                 }
         }
-        
+
         return try persistent.serializedData()
     }
-    
-    public init?(serializedData: Data) {
-        guard let persistent = try? CantoPhoneticInfoPst(serializedData: serializedData) else {
-            return nil
-        }
-        
-        pronunciations = persistent.pronunciations.map {
-            $0.syllables.map { Syllable(rawValue: Int($0))! }
-        }
+
+    public init(serializedData: Data) throws {
+        let persistent = try CantoPhoneticInfoPst(serializedData: serializedData)
+
+        pronunciations = persistent.pronunciations.pronunciations
         offsetPairs = persistent.offsetPairs.map {
             (Int($0.termStart)..<Int($0.termEnd), Int($0.syllableStart)..<Int($0.syllableEnd))
         }
@@ -111,37 +381,37 @@ extension PhoneticInfo {
         if offsetPairs.isEmpty {
             return (term.map { String($0) }, pronunciations.map { [$0] })
         }
-        
+
         var charStart = 0
         var syllableStart = 0
         let chars = Array(term)
         var charGroups = [String]()
         var syllableGroups = [[[Syllable]]](repeating: [], count: pronunciations.count)
-        
+
         for offsetPair in offsetPairs {
             let charEnd = offsetPair.termOffset.startIndex
             charGroups.append(contentsOf: chars[charStart..<charEnd].map { String($0) })
             charStart = offsetPair.termOffset.endIndex
-            
+
             let syllableEnd = offsetPair.syllableOffset.startIndex
             for i in syllableGroups.indices {
                 syllableGroups[i].append(contentsOf: pronunciations[i][syllableStart..<syllableEnd].map { [$0] })
             }
             syllableStart = offsetPair.syllableOffset.endIndex
-            
+
             charGroups.append(String(chars[offsetPair.termOffset]))
             for i in syllableGroups.indices {
                 syllableGroups[i].append(Array(pronunciations[i][offsetPair.syllableOffset]))
             }
         }
-        
+
         if charStart < chars.count {
             charGroups.append(contentsOf: chars[charStart...].map { String($0) })
             for i in syllableGroups.indices {
                 syllableGroups[i].append(contentsOf: pronunciations[i][syllableStart...].map { [$0] })
             }
         }
-        
+
         return (charGroups, syllableGroups)
     }
 }
@@ -175,12 +445,6 @@ extension Syllable {
         $0[$1.jyutPing9] = $1
     }
     
-    static let encodedValueToEnum = allCases.reduce(into: [Int : Syllable]()) {
-        let info = $1.info
-        let encodedValue = Int(info.initial.rawValue) + (Int(info.final.rawValue) << 8) + (Int(info.tone.rawValue) << 16)
-        $0[encodedValue] = $1
-    }
-    
     public var final: Final {
         return info.final
     }
@@ -208,6 +472,11 @@ extension Syllable {
         return String(bytes: [info.initial.encodedValue, info.final.encodedValue, info.tone.encodedValue], encoding: .utf8)!
     }
     
+    public var encodedBytes: [UInt8] {
+        let info = self.info
+        return [info.initial.encodedValue, info.final.encodedValue, info.tone.encodedValue]
+    }
+    
     public init?(jyutPing: String) {
         guard let value = Syllable.jyutPingToValue[jyutPing] else { return nil }
         self = value
@@ -215,12 +484,6 @@ extension Syllable {
     
     public init?(jyutPing9: String) {
         guard let value = Syllable.jyutPing9ToValue[jyutPing9] else { return nil }
-        self = value
-    }
-    
-    public init?(initialValue: UInt8, finalValue: UInt8, toneValue: UInt8) {
-        let combinedValue = Int(initialValue) + (Int(finalValue - Syllable.Initial.count) << 8) + (Int(toneValue - Syllable.Initial.count - Syllable.Final.count) << 16)
-        guard let value = Syllable.encodedValueToEnum[combinedValue] else { return nil }
         self = value
     }
     
@@ -244,9 +507,18 @@ extension Syllable {
             distance += 2
         }
         if myInfo.tone != otherInfo.tone {
-            distance += 2
+            distance += 1
         }
         return distance
+    }
+}
+
+extension Sequence where Element == Syllable {
+    public var encodedString: String {
+        return reduce(into: "") { $0.append($1.encodedString) }
+    }
+    public var encodedBytes: [UInt8] {
+        return reduce(into: []) { $0 += $1.encodedBytes }
     }
 }
 
@@ -257,6 +529,10 @@ extension Collection where Element == Syllable {
         }
         return zip(self, other).reduce(0) { $0 + $1.0.distance(from: $1.1) }
     }
+}
+
+extension Syllable : BaseDictionary.Syllable {
+    public typealias T = Int
 }
 
 extension Syllable : LazyFuzzy {
@@ -284,18 +560,6 @@ extension Syllable.Initial : LazyFuzzy {
         default: return name
         }
     }
-    
-//    var pseudoIPA: Character {
-//        switch self {
-//        case .c: return "ʦ"
-//        case .gw: return "gͧ"
-//        case .kw: return "kͧ"
-//        case .ng: return "ŋ"
-//        case .z: return "ʣ"
-//        case .none: return "∅"
-//        case _: return "\(self)".first!
-//        }
-//    }
     
     var encodedValue: UInt8 {
         return rawValue
@@ -336,69 +600,6 @@ extension Syllable.Final : LazyFuzzy {
         default: return name
         }
     }
-    
-//    var pseudoIPA: String {
-//        switch self {
-//        case .aa: return "a"
-//        case .aai: return "ai"
-//        case .aak: return "ak"
-//        case .aam: return "am"
-//        case .aan: return "an"
-//        case .aang: return "aŋ"
-//        case .aap: return "ap"
-//        case .aat: return "at"
-//        case .aau: return "au"
-//        case .ai: return "ɐi"
-//        case .ak: return "ɐk"
-//        case .am: return "ɐm"
-//        case .an: return "ɐn"
-//        case .ang: return "ɐŋ"
-//        case .ap: return "ɐp"
-//        case .at: return "ɐt"
-//        case .au: return "ɐu"
-//        case .e: return "ɛ"
-//        case .ei: return "ei"
-//        case .ek: return "ɛk"
-//        case .em: return "ɛm"
-//        case .en: return "ɛn"
-//        case .eng: return "ɛŋ"
-//        case .eoi: return "ɵy"
-//        case .eon: return "ɵn"
-//        case .eot: return "ɵt"
-//        case .ep: return "ɛp"
-//        case .et: return "ɛt"
-//        case .eu: return "ɛu"
-//        case .i: return "i"
-//        case .ik: return "ek"
-//        case .im: return "im"
-//        case .`in`: return "in"
-//        case .ing: return "eŋ"
-//        case .ip: return "ip"
-//        case .it: return "it"
-//        case .iu: return "iu"
-//        case .m: return "m̩"
-//        case .ng: return "ŋ̩"
-//        case .o: return "ɔ"
-//        case .oi: return "ɔy"
-//        case .oe: return "œ"
-//        case .oek: return "œk"
-//        case .oeng: return "œŋ"
-//        case .ok: return "ɔk"
-//        case .on: return "ɔn"
-//        case .ong: return "ɔŋ"
-//        case .ot: return "ɔt"
-//        case .ou: return "ou"
-//        case .u: return "u"
-//        case .ui: return "ui"
-//        case .uk: return "ok"
-//        case .un: return "un"
-//        case .ung: return "oŋ"
-//        case .ut: return "ut"
-//        case .yu: return "y"
-//        case .yun: return "yn"
-//        case .yut: return "yt"
-//        }
-//    }
     
     var encodedValue: UInt8 {
         return Syllable.Initial.count + rawValue

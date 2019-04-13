@@ -91,10 +91,8 @@ public class DoubleArrayTrie<V> : ITrie, Serializable where V : Serializable {
         check = try container.decode([Int].self)
     }
     
-    public required init?(serializedData: Data) {
-        guard let persistent = try? AhoCorasickDoubleArrayTriePst(serializedData: serializedData) else {
-            return nil
-        }
+    public required init(serializedData: Data) throws {
+        let persistent = try AhoCorasickDoubleArrayTriePst(serializedData: serializedData)
         base = persistent.base.map { Int($0) }
         check = persistent.check.map { Int($0) }
     }

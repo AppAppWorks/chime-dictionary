@@ -9,25 +9,19 @@
 import BaseDictionary
 
 public class CantoDictionary : DictionaryProtocol {
-    public typealias Result = (String, PhoneticInfo)
+    public typealias Result = (String, TermEntry<CantoSyllable>)
     
-    private let impl: DictionaryImpl<PhoneticInfo>
+    private let impl: DictionaryImpl<TermEntry<CantoSyllable>>
     
-    public required init?(serializedData: Data) {
-        guard let impl = DictionaryImpl<PhoneticInfo>(serializedData: serializedData) else { return nil }
-        self.impl = impl
+    public required init(serializedData: Data) throws {
+        impl = try DictionaryImpl(serializedData: serializedData)
     }
     
-    public init?() {
-        do {
-//            let cidianKeyValues = try CantoDictionary.getKeyValuesFromCidian()
-            let keyNormalizedJsonUrl = URL(fileURLWithPath: "/Users/Resonance/Desktop/keynormalized_kaifangcidian.json")
-            let keyValues = try CantoDictionary.getKeyValuesFromJson(url: keyNormalizedJsonUrl)
-            impl = DictionaryImpl(keyValuesProvider: keyValues)
-        } catch {
-            debugPrint(error)
-            return nil
-        }
+    public init() throws {
+//        let cidianKeyValues = try CantoDictionary.getKeyValuesFromCidian()
+        let keyNormalizedJsonUrl = URL(fileURLWithPath: "/Users/Resonance/Desktop/keynormalized_kaifangcidian.json")
+        let keyValues = try CantoDictionary.getKeyValuesFromJson(url: keyNormalizedJsonUrl)
+        impl = DictionaryImpl(keyValuesProvider: keyValues)
     }
     
     public init?(json: [String : [[String : Any]]]) {
@@ -44,12 +38,12 @@ public class CantoDictionary : DictionaryProtocol {
         impl = DictionaryImpl(keyValuesProvider: keyValues)
     }
     
-    public subscript(key: String) -> PhoneticInfo? {
+    public subscript(key: String) -> [TermEntry<CantoSyllable>]? {
         return impl[key]
     }
     
-    public func convertToSyllables(from text: String, remainsNone: Bool = true) -> Converted {
-        return impl.convertToSyllables(from: text, remainsNone: remainsNone)
+    public func convertToSyllables(from text: String, remainsNone: Bool = true, tcsc: TCSC = .all(hktw: .hk), variantTransform: VariantTransform = [.alias]) -> Converted {
+        return impl.convertToSyllables(from: text, remainsNone: remainsNone, tcsc: tcsc, variantTransform: variantTransform)
     }
     
     static func getKeyValuesFromJson(url: URL) throws -> [Result] {
@@ -166,7 +160,8 @@ public class CantoDictionary : DictionaryProtocol {
                 }
             }
             
-            results.append((term, PhoneticInfo(pronunciations: pronunciations, offsetPairs: offsets)))
+            results.append((term, TermEntry<CantoSyllable>(pronunciations: pronunciations, offsetPairs: offsets)))
+//            results.append((term, PhoneticInfo(tradSimp: .traditional(content: .init(pronunciations: pronunciations)), offsetPairs: offsets)))
         }
         
         return results
@@ -201,7 +196,8 @@ public class CantoDictionary : DictionaryProtocol {
 //                }
 //                word = entry
                 if !syllables.isEmpty {
-                    results.append((word, PhoneticInfo(pronunciations: [syllables], offsetPairs: [])))
+//                    results.append((word, PhoneticInfo(tradSimp: .traditional(content: .init(pronunciations: [syllables])), offsetPairs: [])))
+                    results.append((word, TermEntry<CantoSyllable>(pronunciations: [syllables], offsetPairs: [])))
                     syllables.removeAll()
 //                    word = entry
                 } else {
@@ -213,6 +209,12 @@ public class CantoDictionary : DictionaryProtocol {
         
         return results
     }
+    
+//    static func getKeyValuesFromCCCanto() throws -> ([Result], [String]) {
+//        let path = "/Users/Resonance/Downloads/cccedict-canto-readings-150923.txt"
+//
+//        StreamReader(path: path)?.dropFirst(8)
+//    }
 }
 
 extension CantoDictionary {

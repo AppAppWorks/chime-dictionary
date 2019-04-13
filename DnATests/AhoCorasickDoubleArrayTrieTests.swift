@@ -7,14 +7,17 @@
 //
 
 import XCTest
-import DnA
+@testable import DnA
 
 class AhoCorasickDoubleArrayTrieTest : XCTestCase {
-    func testTwoAC() throws {
-        let datUrl = URL(fileURLWithPath: "/Users/Resonance/Documents/HanLP/data/dictionary/CoreNatureDictionary.mini.txt")
-        
-        let lines = try String(contentsOf: datUrl).split(separator: "\n").map({ String($0) })
-        let map: [String : String] = lines.reduce(into: [:]) {
+    private let datPath = "/Users/Resonance/Documents/HanLP/data/dictionary/CoreNatureDictionary.mini.txt"
+    
+    func testTwoAC() {
+        guard let streamReader = StreamReader(path: datPath) else {
+            return
+        }
+
+        let map: [String : String] = streamReader.reduce(into: [:]) {
             let word = $1.components(separatedBy: .whitespaces)[0]
             $0[word] = word
         }
@@ -39,6 +42,22 @@ class AhoCorasickDoubleArrayTrieTest : XCTestCase {
                 XCTAssertEqual(otherSet, mySet)
             }
 //        }
+    }
+    
+    func testAhoTrie() {
+        guard let streamReader = StreamReader(path: datPath) else {
+            return
+        }
+        
+        let sortedKeys = streamReader.map {
+            $0.components(separatedBy: .whitespaces)[0]
+            }.sorted()
+            .map { ($0, $0) }
+        var act = AhoCorasickDoubleArrayTrie<String>()
+        act.build(map: sortedKeys)
+        
+        print(act.commonPrefixSearch(key: "不可一日", range: 1..<4).map { act[$0] })
+        print(act.commonPrefixSearchWithValue(key: "不可一日", begin: 0))
     }
     
     func testIO() throws {

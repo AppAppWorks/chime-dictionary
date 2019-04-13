@@ -44,12 +44,9 @@ extension Syllables : BaseDictionary.Syllables {
         return try persistent.serializedData()
     }
     
-    public init?(serializedData: Data) {
-        guard let persistent = try? PinyinSyllablesPst(serializedData: serializedData),
-            let value = persistent.value else {
-            return nil
-        }
-        switch value {
+    public init(serializedData: Data) throws {
+        let persistent = try PinyinSyllablesPst(serializedData: serializedData)
+        switch persistent.value! {
         case .china(let china): self = .china(syllables: china.syllables.syllables)
         case .chinas(let chinas): self = .chinas(roc: chinas.roc.syllables, prc: chinas.prc.syllables)
         case .none(_):  self = .none

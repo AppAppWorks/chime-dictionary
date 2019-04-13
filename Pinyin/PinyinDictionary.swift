@@ -14,19 +14,13 @@ public class PinyinDictionary : DictionaryProtocol {
     
     private let impl: DictionaryImpl<Syllables>
     
-    public required init?(serializedData: Data) {
-        guard let impl = DictionaryImpl<Syllables>(serializedData: serializedData) else { return nil }
-        self.impl = impl
+    public required init(serializedData: Data) throws {
+        impl = try DictionaryImpl<Syllables>(serializedData: serializedData)
     }
     
-    public init?() {
-        do {
-            let keyValues = try PinyinDictionary.getKeyValues(from: "/Users/Resonance/Documents/HanLP/data/dictionary/pinyin/pinyin.txt")
-            impl = DictionaryImpl(keyValuesProvider: keyValues)
-        } catch {
-            debugPrint(error)
-            return nil
-        }
+    public init() throws {
+        let keyValues = try PinyinDictionary.getKeyValues(from: "/Users/Resonance/Documents/HanLP/data/dictionary/pinyin/pinyin.txt")
+        impl = DictionaryImpl(keyValuesProvider: keyValues)
     }
     
     static func getKeyValues(from path: String) throws -> [Result] {
@@ -55,7 +49,7 @@ public class PinyinDictionary : DictionaryProtocol {
         return map.sorted { $0.key < $1.key }
     }
     
-    public subscript(key: String) -> Syllables? {
+    public subscript(key: String) -> [Syllables]? {
         return impl[key]
     }
     

@@ -9,28 +9,20 @@
 import SwiftProtobuf
 
 public protocol IHit {
-    associatedtype V : Serializable
+    associatedtype V
     func hit(begin: Int, end: Int, value: V?)
 }
 
 public protocol IHitFull {
-    associatedtype V : Serializable
+    associatedtype V
     func hit(begin: Int, end: Int, value: V?, index: Int)
 }
 
-public struct AhoCorasickDoubleArrayTrie<V> where V : Serializable {
-    enum CodingKeys : CodingKey {
-        case check
-        case base
-        case fail
-        case output
-        case l
-    }
-    
+public struct AhoCorasickDoubleArrayTrie<V> where V : Value {
     public struct Hit {
         public let begin: Int
         public let end: Int
-        public let value: V?
+        public let value: V.V?
     }
     
     public class State : CustomStringConvertible {
@@ -39,7 +31,7 @@ public struct AhoCorasickDoubleArrayTrie<V> where V : Serializable {
         /// the fail function, jumps to this state if no match is found
         private(set) var failure: State?
         private var emits: Set<Int>?
-        /// as long as this state is accessible, the mode list will be stored
+        /// as long as this state is accessible, the pattern list will be stored
         var emit: [Int] {
             if let emit = _emit {
                 return emit
@@ -141,7 +133,7 @@ public struct AhoCorasickDoubleArrayTrie<V> where V : Serializable {
         private var nextCheckPos = 0
         private var keySize = 0
         
-        mutating func build<S>(map: S, trie: inout AhoCorasickDoubleArrayTrie) where S : Sequence, S.Element == (String, V) {
+        mutating func build<S>(map: S, trie: inout AhoCorasickDoubleArrayTrie) where S : Sequence, S.Element == (String, V.V) {
             trie.v = map.map { $0.1 }
             trie.l = [Int](repeating: 0, count: trie.v.count)
             let keys = map.map { $0.0 }
@@ -336,7 +328,7 @@ public struct AhoCorasickDoubleArrayTrie<V> where V : Serializable {
     /// output list
     var output = [[Int]?]()
     /// stores value
-    public var v = [V?]()
+    public var v = [V.V?]()
     /// length of each key
     var l = [Int]()
     /// the size of base and check
@@ -346,7 +338,7 @@ public struct AhoCorasickDoubleArrayTrie<V> where V : Serializable {
         return v.count
     }
     
-    public subscript(key: String) -> V? {
+    public subscript(key: String) -> V.V? {
         get {
             return exactMatchSearch(key: key).flatMap { v[$0] }
         }
@@ -355,7 +347,7 @@ public struct AhoCorasickDoubleArrayTrie<V> where V : Serializable {
         }
     }
     
-    public subscript(index: Int) -> V? {
+    public subscript(index: Int) -> V.V? {
         return v[index]
     }
     
@@ -374,11 +366,11 @@ public struct AhoCorasickDoubleArrayTrie<V> where V : Serializable {
         return collectedEmits
     }
     
-    public func parse<I>(text: String, processor: I) where V == I.V, I : IHit {
+    public func parse<I>(text: String, processor: I) where V.V == I.V, I : IHit {
         parse(text: text, processor: processor.hit(begin:end:value:))
     }
     
-    public func parse(text: String, processor: (_ begin: Int, _ end: Int, _ value: V?) -> Void) {
+    public func parse(text: String, processor: (_ begin: Int, _ end: Int, _ value: V.V?) -> Void) {
         var position = 1
         var currentState = 0
         
@@ -448,18 +440,22 @@ public struct AhoCorasickDoubleArrayTrie<V> where V : Serializable {
         let nodePos = max(0, nodePos)
         
         var result: Int?
-        
-        let keyChars = Array(key)
+        var i = pos
+        let strIdx = key.index(key.startIndex, offsetBy: pos)
         
         var b = base[nodePos]
         var p = 0
         
-        for i in pos..<len {
-            p = b + keyChars[i].codePoint + 1
+        for char in key[strIdx...] {
+            p = b + char.codePoint + 1
             if b == check[p] {
                 b = base[p]
             } else {
                 return result
+            }
+            i += 1
+            if i == len {
+                break
             }
         }
         
@@ -471,7 +467,81 @@ public struct AhoCorasickDoubleArrayTrie<V> where V : Serializable {
         return result
     }
     
-    public mutating func build<S>(map: S) where S : Sequence, S.Element == (String, V) {
+    public func commonPrefixSearch(key: String, range: Range<UInt> = 0..<0, nodePos: UInt = 0) -> [Int] {
+        var i = range.startIndex
+        let startStrIdx = key.index(key.startIndex, offsetBy: Int(i))
+        let len = range.endIndex == 0 ? UInt(key.count) : range.endIndex
+        
+        let nodePos = Int(nodePos)
+        var result = [Int]()
+        
+        var b = base[nodePos]
+        var n = 0
+        var p = 0
+        
+        for char in key[startStrIdx...] {
+            p = b + char.codePoint + 1
+            if b == check[p] {
+                b = base[p]
+            } else {
+                return result
+            }
+            p = b
+            n = base[p]
+            if b == check[p] && n < 0 {
+                result.append(-n - 1)
+            }
+            i += 1
+            if i == len {
+                break
+            }
+        }
+        
+        return result
+    }
+    
+    public func commonPrefixSearchWithValue(key: String, begin: UInt) -> LinkedList<(String, V.V?)> {
+        let begin = Int(begin)
+        let beginStrIdx = key.index(key.startIndex, offsetBy: begin)
+        var endStrIdx = beginStrIdx
+        let len = key.count
+        let result = LinkedList<(String, V.V?)>()
+        var b = base[0]
+        var n = 0
+        var p = 0
+        var growingTerm = ""
+        
+        for _ in begin..<len {
+            let char = key[endStrIdx]
+            key.formIndex(after: &endStrIdx)
+            
+            p = b
+            n = base[p]
+            if b == check[p] && n < 0 {
+                result.append((growingTerm, v[-n - 1]))
+            }
+            
+            growingTerm.append(char)
+            
+            p = b + char.codePoint + 1
+            if b == check[p] {
+                b = base[p]
+            } else {
+                return result
+            }
+        }
+        
+        p = b
+        n = base[p]
+        
+        if b == check[p] && n < 0 {
+            result.append((String(key[beginStrIdx..<endStrIdx]), v[-n - 1]))
+        }
+        
+        return result
+    }
+    
+    public mutating func build<S>(map: S) where S : Sequence, S.Element == (String, V.V) {
         var builder = Builder()
         builder.build(map: map, trie: &self)
     }

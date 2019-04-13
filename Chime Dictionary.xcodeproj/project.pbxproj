@@ -33,6 +33,7 @@
 		59594C7121E2653200BD33C0 /* Canto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59594C6A21E2653200BD33C0 /* Canto.framework */; };
 		59594C7221E2653200BD33C0 /* Canto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 59594C6A21E2653200BD33C0 /* Canto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		59594C7721E2654B00BD33C0 /* Syllable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59594C7621E2654B00BD33C0 /* Syllable.swift */; };
+		597AB22F220EDF3500277D9A /* CantoPhoneticInfoPst.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597AB224220EDF3400277D9A /* CantoPhoneticInfoPst.pb.swift */; };
 		5991747321CFA0A700994C8E /* DnA.h in Headers */ = {isa = PBXBuildFile; fileRef = 5991747121CFA0A700994C8E /* DnA.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5991747621CFA0A700994C8E /* DnA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5991746F21CFA0A700994C8E /* DnA.framework */; };
 		5991747721CFA0A700994C8E /* DnA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5991746F21CFA0A700994C8E /* DnA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -66,6 +67,29 @@
 		5991769021D9283500994C8E /* PinyinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5991768F21D9283500994C8E /* PinyinTests.swift */; };
 		5991769221D9283500994C8E /* Pinyin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5958DB7421C6B8CC00C8EE05 /* Pinyin.framework */; };
 		5991769921D92E3D00994C8E /* BinTrieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5991769821D92E3D00994C8E /* BinTrieTests.swift */; };
+		59AB86512237EEC8005D5D9F /* CommonData.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AB86482237EEC7005D5D9F /* CommonData.pb.swift */; };
+		59AB86532238FFDE005D5D9F /* StreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AB86522238FFDE005D5D9F /* StreamReader.swift */; };
+		59AB8655223A9C08005D5D9F /* DictionaryImplPst.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AB8654223A9C08005D5D9F /* DictionaryImplPst.pb.swift */; };
+		59AB86572241DFBF005D5D9F /* TermEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AB86562241DFBF005D5D9F /* TermEntry.swift */; };
+		59AB865A2241E303005D5D9F /* CommonData.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AB86582241E303005D5D9F /* CommonData.pb.swift */; };
+		59AB865B2241E303005D5D9F /* TermEntryPst.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AB86592241E303005D5D9F /* TermEntryPst.pb.swift */; };
+		59DC0285220EEF99006085EE /* CantoFuzzyDict.h in Headers */ = {isa = PBXBuildFile; fileRef = 59DC0283220EEF99006085EE /* CantoFuzzyDict.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		59DC0288220EEF99006085EE /* CantoFuzzyDict.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59DC0281220EEF99006085EE /* CantoFuzzyDict.framework */; };
+		59DC0289220EEF99006085EE /* CantoFuzzyDict.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 59DC0281220EEF99006085EE /* CantoFuzzyDict.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		59DC0297220EF04B006085EE /* Canto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59594C6A21E2653200BD33C0 /* Canto.framework */; };
+		59DC0298220EF052006085EE /* SymSpell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F87D4C21F768570099F798 /* SymSpell.framework */; };
+		59DC029A2210592C006085EE /* FuzzyDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DC02992210592C006085EE /* FuzzyDictionary.swift */; };
+		59DC029C22105DAF006085EE /* CantoStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DC029B22105DAF006085EE /* CantoStruct.swift */; };
+		59DC029E22105DE0006085EE /* CantoStructPst.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DC029D22105DDF006085EE /* CantoStructPst.pb.swift */; };
+		59DC02A82219415E006085EE /* OffsetPairPst.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DC02A72219415E006085EE /* OffsetPairPst.pb.swift */; };
+		59DC02B022196309006085EE /* CantoFuzzyDictTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DC02AF22196309006085EE /* CantoFuzzyDictTests.swift */; };
+		59DC02B222196309006085EE /* CantoFuzzyDict.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59DC0281220EEF99006085EE /* CantoFuzzyDict.framework */; };
+		59DC02BA221D2D40006085EE /* SymSpell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F87D4C21F768570099F798 /* SymSpell.framework */; };
+		59DC02BB221D2D40006085EE /* SymSpell.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 59F87D4C21F768570099F798 /* SymSpell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		59DC02BE221D2D69006085EE /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F87D1021F6F6C20099F798 /* SwiftProtobuf.framework */; };
+		59DC02BF221D2D69006085EE /* SwiftProtobuf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 59F87D1021F6F6C20099F798 /* SwiftProtobuf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		59DC02CA221EF715006085EE /* StreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DC02C9221EF715006085EE /* StreamReader.swift */; };
+		59DC02D42234F7D7006085EE /* Syllable+Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DC02D32234F7D7006085EE /* Syllable+Info.swift */; };
 		59F87D2121F6F8340099F798 /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F87D1021F6F6C20099F798 /* SwiftProtobuf.framework */; };
 		59F87D2321F6FA110099F798 /* AhoCorasickDoubleArrayTriePst.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F87D2221F6FA110099F798 /* AhoCorasickDoubleArrayTriePst.pb.swift */; };
 		59F87D2521F6FA310099F798 /* AhoCorasickDoubleArrayTrie+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F87D2421F6FA310099F798 /* AhoCorasickDoubleArrayTrie+Extension.swift */; };
@@ -125,6 +149,34 @@
 			remoteGlobalIDString = 5958DB7321C6B8CC00C8EE05;
 			remoteInfo = Pinyin;
 		};
+		59DC0286220EEF99006085EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5958DB5221C6B83200C8EE05 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 59DC0280220EEF99006085EE;
+			remoteInfo = CantoFuzzyDict;
+		};
+		59DC02B322196309006085EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5958DB5221C6B83200C8EE05 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 59DC0280220EEF99006085EE;
+			remoteInfo = CantoFuzzyDict;
+		};
+		59DC02BC221D2D40006085EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 59F87D3D21F768570099F798 /* SymSpell.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5921E00C21E63FEB0077991A;
+			remoteInfo = SymSpell;
+		};
+		59DC02C0221D2D69006085EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 59F87D0121F6F6C20099F798 /* SwiftProtobuf.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BD12FD351D767BA0001815C7;
+			remoteInfo = SwiftProtobuf_iOS;
+		};
 		59F87D0B21F6F6C20099F798 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 59F87D0121F6F6C20099F798 /* SwiftProtobuf.xcodeproj */;
@@ -174,6 +226,27 @@
 			remoteGlobalIDString = F44F93FE1DAEB13F00BC5B85;
 			remoteInfo = SwiftProtobuf_watchOS;
 		};
+		59F87D4B21F768570099F798 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 59F87D3D21F768570099F798 /* SymSpell.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5921E00D21E63FEB0077991A;
+			remoteInfo = SymSpell;
+		};
+		59F87D4D21F768570099F798 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 59F87D3D21F768570099F798 /* SymSpell.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5921E01621E63FEB0077991A;
+			remoteInfo = SymSpellTests;
+		};
+		59F87D4F21F768570099F798 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 59F87D3D21F768570099F798 /* SymSpell.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5921E03B21EB28C50077991A;
+			remoteInfo = SymSpellDemo;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -183,10 +256,13 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				59DC0289220EEF99006085EE /* CantoFuzzyDict.framework in Embed Frameworks */,
+				59DC02BB221D2D40006085EE /* SymSpell.framework in Embed Frameworks */,
 				59594C7221E2653200BD33C0 /* Canto.framework in Embed Frameworks */,
 				5921DFE421E3A7370077991A /* BaseDictionary.framework in Embed Frameworks */,
 				5991747721CFA0A700994C8E /* DnA.framework in Embed Frameworks */,
 				5958DB7C21C6B8CD00C8EE05 /* Pinyin.framework in Embed Frameworks */,
+				59DC02BF221D2D69006085EE /* SwiftProtobuf.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,6 +297,7 @@
 		59594C6C21E2653200BD33C0 /* Canto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canto.h; sourceTree = "<group>"; };
 		59594C6D21E2653200BD33C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59594C7621E2654B00BD33C0 /* Syllable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syllable.swift; sourceTree = "<group>"; };
+		597AB224220EDF3400277D9A /* CantoPhoneticInfoPst.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CantoPhoneticInfoPst.pb.swift; path = ../../../Protobuf/CantoPhoneticInfoPst.pb.swift; sourceTree = "<group>"; };
 		5991746F21CFA0A700994C8E /* DnA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DnA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5991747121CFA0A700994C8E /* DnA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DnA.h; sourceTree = "<group>"; };
 		5991747221CFA0A700994C8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -255,12 +332,31 @@
 		5991768F21D9283500994C8E /* PinyinTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinyinTests.swift; sourceTree = "<group>"; };
 		5991769121D9283500994C8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5991769821D92E3D00994C8E /* BinTrieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinTrieTests.swift; sourceTree = "<group>"; };
+		59AB86482237EEC7005D5D9F /* CommonData.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommonData.pb.swift; path = ../../../Protobuf/CommonData.pb.swift; sourceTree = "<group>"; };
+		59AB86522238FFDE005D5D9F /* StreamReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamReader.swift; sourceTree = "<group>"; };
+		59AB8654223A9C08005D5D9F /* DictionaryImplPst.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DictionaryImplPst.pb.swift; path = ../../../Protobuf/DictionaryImplPst.pb.swift; sourceTree = "<group>"; };
+		59AB86562241DFBF005D5D9F /* TermEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermEntry.swift; sourceTree = "<group>"; };
+		59AB86582241E303005D5D9F /* CommonData.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommonData.pb.swift; path = ../../../Protobuf/CommonData.pb.swift; sourceTree = "<group>"; };
+		59AB86592241E303005D5D9F /* TermEntryPst.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TermEntryPst.pb.swift; path = ../../../Protobuf/TermEntryPst.pb.swift; sourceTree = "<group>"; };
+		59DC0281220EEF99006085EE /* CantoFuzzyDict.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CantoFuzzyDict.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		59DC0283220EEF99006085EE /* CantoFuzzyDict.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CantoFuzzyDict.h; sourceTree = "<group>"; };
+		59DC0284220EEF99006085EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		59DC02992210592C006085EE /* FuzzyDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuzzyDictionary.swift; sourceTree = "<group>"; };
+		59DC029B22105DAF006085EE /* CantoStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CantoStruct.swift; sourceTree = "<group>"; };
+		59DC029D22105DDF006085EE /* CantoStructPst.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CantoStructPst.pb.swift; path = ../../../Protobuf/CantoStructPst.pb.swift; sourceTree = "<group>"; };
+		59DC02A72219415E006085EE /* OffsetPairPst.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OffsetPairPst.pb.swift; path = ../../../Protobuf/OffsetPairPst.pb.swift; sourceTree = "<group>"; };
+		59DC02AD22196309006085EE /* CantoFuzzyDictTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CantoFuzzyDictTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		59DC02AF22196309006085EE /* CantoFuzzyDictTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CantoFuzzyDictTests.swift; sourceTree = "<group>"; };
+		59DC02B122196309006085EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		59DC02C9221EF715006085EE /* StreamReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamReader.swift; sourceTree = "<group>"; };
+		59DC02D32234F7D7006085EE /* Syllable+Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Syllable+Info.swift"; sourceTree = "<group>"; };
 		59F87D0121F6F6C20099F798 /* SwiftProtobuf.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftProtobuf.xcodeproj; path = "../../../swift-protobuf/SwiftProtobuf.xcodeproj"; sourceTree = "<group>"; };
 		59F87D2221F6FA110099F798 /* AhoCorasickDoubleArrayTriePst.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AhoCorasickDoubleArrayTriePst.pb.swift; path = ../../../Protobuf/AhoCorasickDoubleArrayTriePst.pb.swift; sourceTree = "<group>"; };
 		59F87D2421F6FA310099F798 /* AhoCorasickDoubleArrayTrie+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AhoCorasickDoubleArrayTrie+Extension.swift"; sourceTree = "<group>"; };
 		59F87D2921F711050099F798 /* Syllable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Syllable+Extension.swift"; sourceTree = "<group>"; };
 		59F87D2B21F7124F0099F798 /* PinyinSyllablesPst.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinyinSyllablesPst.pb.swift; path = ../../../Protobuf/PinyinSyllablesPst.pb.swift; sourceTree = "<group>"; };
 		59F87D2D21F71A520099F798 /* Syllable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Syllable+Extension.swift"; sourceTree = "<group>"; };
+		59F87D3D21F768570099F798 /* SymSpell.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SymSpell.xcodeproj; path = ../SymSpell/SymSpell.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,10 +380,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59DC0288220EEF99006085EE /* CantoFuzzyDict.framework in Frameworks */,
+				59DC02BA221D2D40006085EE /* SymSpell.framework in Frameworks */,
 				59594C7121E2653200BD33C0 /* Canto.framework in Frameworks */,
 				5921DFE321E3A7370077991A /* BaseDictionary.framework in Frameworks */,
 				5991747621CFA0A700994C8E /* DnA.framework in Frameworks */,
 				5958DB7B21C6B8CD00C8EE05 /* Pinyin.framework in Frameworks */,
+				59DC02BE221D2D69006085EE /* SwiftProtobuf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +431,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		59DC027E220EEF99006085EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59DC0298220EF052006085EE /* SymSpell.framework in Frameworks */,
+				59DC0297220EF04B006085EE /* Canto.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59DC02AA22196309006085EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59DC02B222196309006085EE /* CantoFuzzyDict.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -343,7 +459,11 @@
 				5921DFDF21E3A7370077991A /* Info.plist */,
 				5921DFE821E3A7900077991A /* Syllables.swift */,
 				5921DFED21E3AA2C0077991A /* DictionaryImpl.swift */,
+				59AB8654223A9C08005D5D9F /* DictionaryImplPst.pb.swift */,
 				5921DFF221E4D10C0077991A /* DictionaryProtocol.swift */,
+				59AB86562241DFBF005D5D9F /* TermEntry.swift */,
+				59AB86582241E303005D5D9F /* CommonData.pb.swift */,
+				59AB86592241E303005D5D9F /* TermEntryPst.pb.swift */,
 			);
 			path = BaseDictionary;
 			sourceTree = "<group>";
@@ -360,6 +480,7 @@
 		5958DB5121C6B83200C8EE05 = {
 			isa = PBXGroup;
 			children = (
+				59F87D3D21F768570099F798 /* SymSpell.xcodeproj */,
 				5958DB5C21C6B83200C8EE05 /* Chime Dictionary */,
 				5958DB7521C6B8CD00C8EE05 /* Pinyin */,
 				5991747021CFA0A700994C8E /* DnA */,
@@ -368,6 +489,8 @@
 				59594C6B21E2653200BD33C0 /* Canto */,
 				5921DFDD21E3A7370077991A /* BaseDictionary */,
 				5921DFF921E4F6370077991A /* CantoTests */,
+				59DC0282220EEF99006085EE /* CantoFuzzyDict */,
+				59DC02AE22196309006085EE /* CantoFuzzyDictTests */,
 				5958DB5B21C6B83200C8EE05 /* Products */,
 				5991764321D276BD00994C8E /* Frameworks */,
 			);
@@ -384,6 +507,8 @@
 				59594C6A21E2653200BD33C0 /* Canto.framework */,
 				5921DFDC21E3A7370077991A /* BaseDictionary.framework */,
 				5921DFF821E4F6370077991A /* CantoTests.xctest */,
+				59DC0281220EEF99006085EE /* CantoFuzzyDict.framework */,
+				59DC02AD22196309006085EE /* CantoFuzzyDictTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -417,10 +542,14 @@
 		59594C6B21E2653200BD33C0 /* Canto */ = {
 			isa = PBXGroup;
 			children = (
+				59AB86522238FFDE005D5D9F /* StreamReader.swift */,
+				59AB86482237EEC7005D5D9F /* CommonData.pb.swift */,
+				597AB224220EDF3400277D9A /* CantoPhoneticInfoPst.pb.swift */,
 				59594C6C21E2653200BD33C0 /* Canto.h */,
 				59594C6D21E2653200BD33C0 /* Info.plist */,
 				59594C7621E2654B00BD33C0 /* Syllable.swift */,
 				59F87D2D21F71A520099F798 /* Syllable+Extension.swift */,
+				59DC02D32234F7D7006085EE /* Syllable+Info.swift */,
 				5921DFF021E3AE920077991A /* CantoDictionary.swift */,
 			);
 			path = Canto;
@@ -468,6 +597,7 @@
 				5991766A21D384ED00994C8E /* AhoCorasickDoubleArrayTrieTests.swift */,
 				5991767E21D6776500994C8E /* TrieTests.swift */,
 				5991769821D92E3D00994C8E /* BinTrieTests.swift */,
+				59DC02C9221EF715006085EE /* StreamReader.swift */,
 			);
 			path = DnATests;
 			sourceTree = "<group>";
@@ -504,6 +634,28 @@
 			path = PinyinTests;
 			sourceTree = "<group>";
 		};
+		59DC0282220EEF99006085EE /* CantoFuzzyDict */ = {
+			isa = PBXGroup;
+			children = (
+				59DC02A72219415E006085EE /* OffsetPairPst.pb.swift */,
+				59DC029D22105DDF006085EE /* CantoStructPst.pb.swift */,
+				59DC0283220EEF99006085EE /* CantoFuzzyDict.h */,
+				59DC0284220EEF99006085EE /* Info.plist */,
+				59DC02992210592C006085EE /* FuzzyDictionary.swift */,
+				59DC029B22105DAF006085EE /* CantoStruct.swift */,
+			);
+			path = CantoFuzzyDict;
+			sourceTree = "<group>";
+		};
+		59DC02AE22196309006085EE /* CantoFuzzyDictTests */ = {
+			isa = PBXGroup;
+			children = (
+				59DC02AF22196309006085EE /* CantoFuzzyDictTests.swift */,
+				59DC02B122196309006085EE /* Info.plist */,
+			);
+			path = CantoFuzzyDictTests;
+			sourceTree = "<group>";
+		};
 		59F87D0221F6F6C20099F798 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -514,6 +666,16 @@
 				59F87D1421F6F6C20099F798 /* SwiftProtobuf.framework */,
 				59F87D1621F6F6C20099F798 /* SwiftProtobufTests.xctest */,
 				59F87D1821F6F6C20099F798 /* SwiftProtobuf.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		59F87D3E21F768570099F798 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				59F87D4C21F768570099F798 /* SymSpell.framework */,
+				59F87D4E21F768570099F798 /* SymSpellTests.xctest */,
+				59F87D5021F768570099F798 /* SymSpellDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -550,6 +712,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5991747321CFA0A700994C8E /* DnA.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59DC027C220EEF99006085EE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59DC0285220EEF99006085EE /* CantoFuzzyDict.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,6 +778,9 @@
 				5991747521CFA0A700994C8E /* PBXTargetDependency */,
 				59594C7021E2653200BD33C0 /* PBXTargetDependency */,
 				5921DFE221E3A7370077991A /* PBXTargetDependency */,
+				59DC0287220EEF99006085EE /* PBXTargetDependency */,
+				59DC02BD221D2D40006085EE /* PBXTargetDependency */,
+				59DC02C1221D2D69006085EE /* PBXTargetDependency */,
 			);
 			name = "Chime Dictionary";
 			productName = "Chime Dictionary";
@@ -704,6 +877,42 @@
 			productReference = 5991768D21D9283500994C8E /* PinyinTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		59DC0280220EEF99006085EE /* CantoFuzzyDict */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 59DC0296220EEF99006085EE /* Build configuration list for PBXNativeTarget "CantoFuzzyDict" */;
+			buildPhases = (
+				59DC027C220EEF99006085EE /* Headers */,
+				59DC027D220EEF99006085EE /* Sources */,
+				59DC027E220EEF99006085EE /* Frameworks */,
+				59DC027F220EEF99006085EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CantoFuzzyDict;
+			productName = CantoFuzzyDict;
+			productReference = 59DC0281220EEF99006085EE /* CantoFuzzyDict.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		59DC02AC22196309006085EE /* CantoFuzzyDictTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 59DC02B522196309006085EE /* Build configuration list for PBXNativeTarget "CantoFuzzyDictTests" */;
+			buildPhases = (
+				59DC02A922196309006085EE /* Sources */,
+				59DC02AA22196309006085EE /* Frameworks */,
+				59DC02AB22196309006085EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				59DC02B422196309006085EE /* PBXTargetDependency */,
+			);
+			name = CantoFuzzyDictTests;
+			productName = CantoFuzzyDictTests;
+			productReference = 59DC02AD22196309006085EE /* CantoFuzzyDictTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -742,6 +951,13 @@
 					5991768C21D9283500994C8E = {
 						CreatedOnToolsVersion = 10.1;
 					};
+					59DC0280220EEF99006085EE = {
+						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
+					};
+					59DC02AC22196309006085EE = {
+						CreatedOnToolsVersion = 10.1;
+					};
 				};
 			};
 			buildConfigurationList = 5958DB5521C6B83200C8EE05 /* Build configuration list for PBXProject "Chime Dictionary" */;
@@ -760,6 +976,10 @@
 					ProductGroup = 59F87D0221F6F6C20099F798 /* Products */;
 					ProjectRef = 59F87D0121F6F6C20099F798 /* SwiftProtobuf.xcodeproj */;
 				},
+				{
+					ProductGroup = 59F87D3E21F768570099F798 /* Products */;
+					ProjectRef = 59F87D3D21F768570099F798 /* SymSpell.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -771,6 +991,8 @@
 				59594C6921E2653200BD33C0 /* Canto */,
 				5921DFDB21E3A7370077991A /* BaseDictionary */,
 				5921DFF721E4F6370077991A /* CantoTests */,
+				59DC0280220EEF99006085EE /* CantoFuzzyDict */,
+				59DC02AC22196309006085EE /* CantoFuzzyDictTests */,
 			);
 		};
 /* End PBXProject section */
@@ -823,6 +1045,27 @@
 			fileType = wrapper.framework;
 			path = SwiftProtobuf.framework;
 			remoteRef = 59F87D1721F6F6C20099F798 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		59F87D4C21F768570099F798 /* SymSpell.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SymSpell.framework;
+			remoteRef = 59F87D4B21F768570099F798 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		59F87D4E21F768570099F798 /* SymSpellTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SymSpellTests.xctest;
+			remoteRef = 59F87D4D21F768570099F798 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		59F87D5021F768570099F798 /* SymSpellDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = SymSpellDemo.app;
+			remoteRef = 59F87D4F21F768570099F798 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -888,6 +1131,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		59DC027F220EEF99006085EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59DC02AB22196309006085EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -896,8 +1153,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				5921DFE921E3A7900077991A /* Syllables.swift in Sources */,
+				59AB865B2241E303005D5D9F /* TermEntryPst.pb.swift in Sources */,
 				5921DFEC21E3A8ED0077991A /* BaseSearcher.swift in Sources */,
+				59AB8655223A9C08005D5D9F /* DictionaryImplPst.pb.swift in Sources */,
 				5921DFEE21E3AA2C0077991A /* DictionaryImpl.swift in Sources */,
+				59AB865A2241E303005D5D9F /* CommonData.pb.swift in Sources */,
+				59AB86572241DFBF005D5D9F /* TermEntry.swift in Sources */,
 				5921DFF321E4D10C0077991A /* DictionaryProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -934,9 +1195,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59DC02D42234F7D7006085EE /* Syllable+Info.swift in Sources */,
 				59594C7721E2654B00BD33C0 /* Syllable.swift in Sources */,
 				59F87D2E21F71A520099F798 /* Syllable+Extension.swift in Sources */,
+				59AB86532238FFDE005D5D9F /* StreamReader.swift in Sources */,
+				597AB22F220EDF3500277D9A /* CantoPhoneticInfoPst.pb.swift in Sources */,
 				5921DFF121E3AE920077991A /* CantoDictionary.swift in Sources */,
+				59AB86512237EEC8005D5D9F /* CommonData.pb.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -975,6 +1240,7 @@
 				5991766B21D384ED00994C8E /* AhoCorasickDoubleArrayTrieTests.swift in Sources */,
 				5991769921D92E3D00994C8E /* BinTrieTests.swift in Sources */,
 				5991767F21D6776500994C8E /* TrieTests.swift in Sources */,
+				59DC02CA221EF715006085EE /* StreamReader.swift in Sources */,
 				5991749621CFA12C00994C8E /* DnATests.swift in Sources */,
 				599174AE21D102FC00994C8E /* DoubleArrayTrieTests.swift in Sources */,
 				5991749F21CFA1B500994C8E /* RedBlackTreeTests.swift in Sources */,
@@ -986,6 +1252,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				5991769021D9283500994C8E /* PinyinTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59DC027D220EEF99006085EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59DC029C22105DAF006085EE /* CantoStruct.swift in Sources */,
+				59DC029A2210592C006085EE /* FuzzyDictionary.swift in Sources */,
+				59DC029E22105DE0006085EE /* CantoStructPst.pb.swift in Sources */,
+				59DC02A82219415E006085EE /* OffsetPairPst.pb.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59DC02A922196309006085EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59DC02B022196309006085EE /* CantoFuzzyDictTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1027,6 +1312,26 @@
 			target = 5958DB7321C6B8CC00C8EE05 /* Pinyin */;
 			targetProxy = 5991769321D9283500994C8E /* PBXContainerItemProxy */;
 		};
+		59DC0287220EEF99006085EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 59DC0280220EEF99006085EE /* CantoFuzzyDict */;
+			targetProxy = 59DC0286220EEF99006085EE /* PBXContainerItemProxy */;
+		};
+		59DC02B422196309006085EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 59DC0280220EEF99006085EE /* CantoFuzzyDict */;
+			targetProxy = 59DC02B322196309006085EE /* PBXContainerItemProxy */;
+		};
+		59DC02BD221D2D40006085EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SymSpell;
+			targetProxy = 59DC02BC221D2D40006085EE /* PBXContainerItemProxy */;
+		};
+		59DC02C1221D2D69006085EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftProtobuf_iOS;
+			targetProxy = 59DC02C0221D2D69006085EE /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1063,6 +1368,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = BaseDictionary/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1093,6 +1399,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = BaseDictionary/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1268,6 +1575,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 53SNVS43AU;
 				INFOPLIST_FILE = "Chime Dictionary/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1287,6 +1595,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 53SNVS43AU;
 				INFOPLIST_FILE = "Chime Dictionary/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1313,6 +1622,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Pinyin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1343,6 +1653,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Pinyin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1372,6 +1683,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Canto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1402,6 +1714,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Canto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1431,6 +1744,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = DnA/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1461,6 +1775,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = DnA/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1548,6 +1863,103 @@
 			};
 			name = Release;
 		};
+		59DC028A220EEF99006085EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 53SNVS43AU;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = CantoFuzzyDict/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.appappworks.CantoFuzzyDict;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		59DC028B220EEF99006085EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 53SNVS43AU;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = CantoFuzzyDict/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.appappworks.CantoFuzzyDict;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		59DC02B622196309006085EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 53SNVS43AU;
+				INFOPLIST_FILE = CantoFuzzyDictTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.appappworks.CantoFuzzyDictTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		59DC02B722196309006085EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 53SNVS43AU;
+				INFOPLIST_FILE = CantoFuzzyDictTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.appappworks.CantoFuzzyDictTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1628,6 +2040,24 @@
 			buildConfigurations = (
 				5991769621D9283500994C8E /* Debug */,
 				5991769721D9283500994C8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		59DC0296220EEF99006085EE /* Build configuration list for PBXNativeTarget "CantoFuzzyDict" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59DC028A220EEF99006085EE /* Debug */,
+				59DC028B220EEF99006085EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		59DC02B522196309006085EE /* Build configuration list for PBXNativeTarget "CantoFuzzyDictTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59DC02B622196309006085EE /* Debug */,
+				59DC02B722196309006085EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

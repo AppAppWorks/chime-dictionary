@@ -7,8 +7,8 @@
 //
 
 import XCTest
-import Pinyin
-import DnA
+@testable import Pinyin
+@testable import DnA
 
 class PinyinTests: XCTestCase {
 
@@ -129,10 +129,30 @@ class PinyinTests: XCTestCase {
 //        s2.enumerateSubstrings(in: s2.startIndex..<s2.endIndex, options: .byWords) { (substring, _, _, end) in
 //            print(substring)
 //        }
-        let s2 = "抱蔓摘瓜"
-        let p2 = PinyinDictionary.shared.convertToPinyin(from: s2)
+//        let s2 = "抱蔓摘瓜"
+        let s2 = "一日三秋一时疏忽"
+        let p2 = try! PinyinDictionary().convertToSyllables(from: s2)
         print(p2)
     }
+    
+    let pinyinDictUrl = URL(fileURLWithPath: "/Users/Resonance/Desktop/PinyinDict.pb")
+    
+    func testSerialize() throws {
+        let dict = try PinyinDictionary()
+        let data = try dict.serializedData()
+        
+        try data.write(to: pinyinDictUrl, options: [.atomic])
+    }
+    
+    func testDeserialize() throws {
+        let data = try Data(contentsOf: pinyinDictUrl)
+        let dict = try PinyinDictionary(serializedData: data)
+        let s2 = "一日三秋一时疏忽"
+        let p2 = dict.convertToSyllables(from: s2)
+        print(p2)
+    }
+    
+//    func testDeserialie()
 
     func testDict() {
         let dictionary = StringDictionary(separator: "=")
@@ -153,4 +173,31 @@ class PinyinTests: XCTestCase {
             print("case \($0)")
         }
     }
+    
+    func testTest() {
+        
+    }
+}
+
+protocol A {
+    associatedtype B
+    static var b: B? { get }
+}
+
+extension A {
+    static var b: B? { return nil }
+}
+
+struct A1 : A {
+    static var b: Int? { return nil }
+}
+
+class C<D> where D : A {
+    func a() {
+        D.b
+    }
+}
+
+func a() {
+    let c = C<A1>()
 }
